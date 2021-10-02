@@ -1,0 +1,45 @@
+body{
+    background-color: #f1faee;
+}
+h1{
+color: #e63946;
+}
+h3{
+    color: #bb3e03;
+}
+div {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: #293241 solid 2px;
+    background-color: #ee6c4d;
+    display:inline-block;
+}
+div:nth-of-type(2n){
+    background-color: #3d5a80;
+}
+#static .middle{
+    position:static;
+    top:20px;
+    left:20px;
+}
+#relative .middle{
+    position: relative;
+    top: 20px;
+    left: 50px;
+}
+#fixed .middle{
+    position: fixed;
+    top: 20px;
+    left: 50px;
+}
+#parent {
+    position: relative;
+}
+#absolute .middle{
+    position: absolute;
+    top: 20px;
+    background-color: #f1faee;
+    left: 150px;
+
+}

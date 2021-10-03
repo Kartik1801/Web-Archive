@@ -1,0 +1,35 @@
+body{
+
+    font-family: 'Roboto',sans-serif;
+    display: flex;
+    align-items:center ;
+    justify-content: center;
+    margin: 0;
+    height: 100vh;
+    background-color: #151b29;
+}
+div{
+    display: flex;
+    flex-direction: column;
+    color:#ffa260;
+    align-items:center;
+    justify-content:center; 
+}
+
+button{
+    font-family: inherit;
+    background:none;
+    color:#ffa260;
+    border:2px solid;
+    border-radius: 0.5em 1em;
+    padding: 1em 2em;
+    font-size: 1em;
+    transition: border-color 0.5s ease-in 0, color 0.5s ease-in 0,box-shadow 0.5s ease-in 0,transform 0.5s ease-in 0 ;
+}
+button:hover{
+border-color:#f1ff5c;
+color:#ffaf05;
+box-shadow: 0 ;
+transform: translateY(-0.25em);
+cursor:pointer;
+}

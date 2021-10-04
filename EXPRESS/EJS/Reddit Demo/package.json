@@ -1,0 +1,15 @@
+{
+  "name": "reddit-demo",
+  "version": "1.0.0",
+  "description": "A Small and Basic reddit clone.",
+  "main": "index.js",
+  "scripts": {
+    "test": "NONE"
+  },
+  "author": "KD",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+</head>
+<style>
+    body{
+        border-left: 50px;
+    } 
+    .field{
+        margin-bottom:10px;
+    }
+    label{
+        display: block; 
+    }
+    td{
+        padding-right: 10px;
+        font-size: 12px; 
+    }
+</style>
+<script src="/basics/jquery-3.6.0.js"></script>
+<body>
+    <h1>Salary Calculator</h1>
+    <hr>
+    <div class="field">
+        <label for="">BASIC: </label>
+        <input type="number" name="" id="txtbasic">
+    </div>
+    <div class="field">
+        <label for="">HRA: </label>
+        <input type="number" id="txthra"></input>
+    </div>
+    <div class="field">
+        <label for="">DA: </label>
+        <input type="number" name="" id="txtda">
+    </div>
+    <div class="field">
+        <label for="">Tax: </label>
+        <input type="range" name="" id="rangetax" min="0" max="30" value="0">
+    </div>
+    <div class="field">
+        <input type="button" value="Calculate" id="btncalculate">
+    </div>
+    <div class="field">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="tdbasic">[BASIC]</td>
+                    <td id="tdhra">[HRA]</td>
+                    <td id="tdda">[DA]</td>
+                    <td id="tdtax">[TAX]</td>
+                    <td id="tdsalary">[SALARY]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //state & behavior of Calculator:
+        var salaryCalculationModel = function(){
+            this.basic=0;   //public
+            this.hra=0;     //public
+            this.da=0;      //public
+            this.tax=0;     //public
+            this.salary=0;  //public
+        }
+6
+        salaryCalculationModel.prototype.calculateSalary = function(){  //public
+            var gross=this.basic+this.hra+this.da;
+            var net=gross*(1-(this.tax/100));
+            this.salary=net;
+        }
+
+        // User Interaction responsibility.
+        $(function(){
+            var model=new salaryCalculationModel();
+            
+            $('#btncalculate').click(function(){
+                model.basic=parseInt($("#txtbasic").val());
+                model.hra=parseInt($("#txthra").val());
+                model.da=parseInt($("#txtda").val());
+                model.tax=parseInt($("#rangetax").val());
+             
+                model.calculateSalary();
+
+                $("#tdbasic").html(model.basic);
+                $("#tdhra").html(model.hra);
+                $("#tdda").html(model.da);
+                $("#tdtax").html(model.tax);
+                $("#tdsalary").html(model.salary);
+            })
+        })    
+    </script>
+</body>
+</html>

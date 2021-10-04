@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator</title>
+</head>
+<style>
+    body{
+        border-left: 50px;
+    } 
+    .field{
+        margin-bottom:10px;
+    }
+    label{
+        display: block; 
+    }
+    td{
+        padding-right: 10px;
+        font-size: 12px; 
+    }
+</style>
+<script src="/basics/jquery-3.6.0.js"></script>
+<body>
+    <h1>Salary Calculator</h1>
+    <hr>
+    <div class="field">
+        <label for="">BASIC: </label>
+        <input type="number" name="" id="txtbasic">
+    </div>
+    <div class="field">
+        <label for="">HRA: </label>
+        <input type="number" id="txthra"></input>
+    </div>
+    <div class="field">
+        <label for="">DA: </label>
+        <input type="number" name="" id="txtda">
+    </div>
+    <div class="field">
+        <label for="">Tax: </label>
+        <input type="range" name="" id="rangetax" min="0" max="30" value="0">
+    </div>
+    <div class="field">
+        <input type="button" value="Calculate" id="btncalculate">
+    </div>
+    <div class="field">
+        <table>
+            <tbody>
+                <tr>
+                    <td id="tdbasic">[BASIC]</td>
+                    <td id="tdhra">[HRA]</td>
+                    <td id="tdda">[DA]</td>
+                    <td id="tdtax">[TAX]</td>
+                    <td id="tdsalary">[SALARY]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //state & behavior of Calculator:
+        var salaryCalculationModel = function(){
+            /* this.basic=0;   //public */
+            var _basic = 0;   //private
+            this.onBasicChange = null; 
+            this.getBasic = function(){
+                return _basic
+            }
+            this.setBasic = function(value){
+                if (_basic === value) return;
+                _basic = value;
+                if (typeof this.onBasicChange === "function") 
+                    this.onBasicChange();
+            }            
+            var _hra = 0;     //private
+            this.onHraChange = null;
+            this.getHra = function(){
+                return _hra
+            }
+            this.setHra = function(value){
+                if(_hra == value) return;
+                _hra = value;
+                if(typeof this.onHraChange === "function")
+                    this.onHraChange();
+            }
+            var _da = 0;      //private
+            this.onDaChange = null;
+            this.getDa = function(){
+                return _da
+            }
+            this.setDa = function(value){
+                if(_da == value) return;
+                _da = value;
+                if( typeof this.onDaChange === "function" )
+                this.onDaChange();
+            }
+            var _tax = 0;     //private
+            this.onTaxChange = null;
+            this.getTax = function(){
+                return _tax
+            }
+            this.setTax = function(value){
+                if(_tax == value) return;
+                _tax = value;
+                if(typeof this.onTaxChange === "function")
+                 this.onTaxChange()
+            }
+            var _salary = 0;  //private
+            this.onSalaryChange = null;  //public
+            this.getSalary = function(){
+                return _salary
+            }                        
+            
+        }
+
+        salaryCalculationModel.prototype.calculateSalary = function(){  //public
+            var gross = this.getBasic + this.getHra + this.getSalary;
+            var net = gross * ( 1 - (this.getTax / 100));
+            this.salary = net;
+            if( typeof this.onSalaryChange === 'function')
+                this.onSalaryChange();
+        }
+
+
+        // User Interaction responsibility.
+        
+        $(function(){
+            var model = new salaryCalculationModel();
+           // Here we populate the model as soon as the user enter the value instead of populating the model on button click. 
+            $("#txtbasic").on("change",function(){
+                model.basic = parseInt($("#txtbasic").val());
+            });
+            $("#txthra").on("change",function(){
+                model.hra = parseInt($("#txthra").val());
+            });
+            $("#txtda").on("change",function(){
+                model.da = parseInt($("#txtda").val());
+            });
+            $("#txttax").on("change",function(){
+                model.tax = parseInt($("#rangetax").val());
+            });
+            $('#btncalculate').click(function(){
+                model.calculateSalary();
+            })
+            model.onSalaryChange = function(){
+                $("#tdsalary").html(model.getSalary());
+            }
+            model.onBasicChange=function(){
+                $("#tdbasic").html(model.getBasic());
+            }
+        })    
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+ </head>
+ <body>
+     <section class="section">
+        <div class="container ">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="card">
+                <div class="card-image">
+                    <figure class="image is-2by1"><img src="assets/lisa-keffer-i0kB5B9J8Ds-unsplash.jpg"></figure>
+                </div>
+                <header class="card-header">
+                <p class="card-header-title">
+                ScoreKeeper
+                </p>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <h1 class="scores title is-size-1">
+                    <span id="player1">0</span> of <span id="player2">0</span>
+                    </h1>
+                    <p class="subtitle">Use buttons to manage scores.</p>
+                    <div class="maxscore">
+                    <div class="label is-large is-inline">
+                    <label for="selector">Playing to  : </label>
+                    </div>
+                    <div class="select is-rounded">
+                        <select name="selector" id="selector">
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        </select>
+                    </div>
+                    </div>
+                 </div>
+                </div>
+              <footer class="card-footer ">
+                <button  class="button is-success is-fullwidth " id="player1btn" >+ Player 1 </button>
+                <button class="button is-info is-fullwidth "  id="player2btn" >+ Player 2 </button>
+                <button  class="button is-danger is-fullwidth " id="resetbtn" > Reset </button>
+              </footer>
+           </div>
+          </div>
+         </div>
+        </div>
+     </section>  
+    <script src="assets/app.js"></script>
+ </body>
+</html>

@@ -42,6 +42,7 @@ if(port)
     })
 
     app.get("/search",(req,res) =>{
+        // const {query} listens for value of query key in request (req).
         const {query} = req.query;
         if(!query){
             res.send("<h1>NOTHING FOUND IF NOTHING IS SEARCHED !</h1>");
@@ -58,5 +59,7 @@ if(port)
         console.log(`Listening on port ${port}`);
     })
 }
-else
-    console.log('Enter a port no!');
+else{
+    port=3000;
+    console.log('Listening on default port no: 3000');
+}

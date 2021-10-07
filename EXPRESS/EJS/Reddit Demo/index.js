@@ -1,9 +1,10 @@
-// Basic Reddit Demo 
+// Basic Reddit Demo:
+
 const express = require('express');
-const app=express();
+const app = express();
 const path = require('path');
 
-const redditData=require('./data.json');
+const redditData = require('./data.json');
 let port= process.argv[2];
  if(!port){port=3000;}
 

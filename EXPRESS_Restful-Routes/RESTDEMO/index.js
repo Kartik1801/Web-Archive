@@ -8,6 +8,10 @@ if(!port){
 app.get('/tacos',(req,res)=>{
     res.send("GET /Tacos Response !");
 })
+app.post('/tacos',(req,res)=>{
+    res.send("POST /Tacos Response !");
+})
+
 app.listen(port,()=>{
     console.log("Listening on port: " + port);
 })

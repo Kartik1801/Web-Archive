@@ -5,10 +5,16 @@ let port = process.argv[2];
 if(!port){
     port=3000
 }
+/* 
+REST using comments example
 
-// app.use is used to run some function on every single route/ request.
-// express.json(), express.urlencoded() are middleware used to parse the request body that is coming along with the post request.
+GET /comments - list all comments.                      - Index Route.
+POST /comments - create a new comment.                  - Create Route. 
+GET /comments/:id - Get one comment (using id)          - Show Route.
+PUT or PATCH /comments/:id - updates one comment.       - Update Route.
+DELETE /comments/:id - Deletes one comment.             - Delete / Destroy Route.
 
+*/
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 

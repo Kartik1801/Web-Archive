@@ -6,7 +6,7 @@ if(!port){
     port=3000
 }
 /* 
-REST using comments example
+REST using comments example: 
 
 GET /comments - list all comments.                      - Index Route.
 POST /comments - create a new comment.                  - Create Route. 

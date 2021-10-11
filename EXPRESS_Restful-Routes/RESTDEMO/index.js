@@ -1,14 +1,4 @@
-// RESTFUL ROUTES DEMO
-const express = require("express");
-const app = express();
-
-let port = process.argv[2]; 
-
-if(!port){
-    port=3000
-}
 /* 
-
 RESTFUL ROUTES using comments example: 
 
     GET /comments - list all comments.                      - Index Route.
@@ -18,6 +8,15 @@ RESTFUL ROUTES using comments example:
     DELETE /comments/:id - Deletes one comment.             - Delete / Destroy Route.
 
 */
+
+const express = require("express");
+const app = express();
+
+let port = process.argv[2]; 
+
+if(!port){
+    port=3000
+}
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());

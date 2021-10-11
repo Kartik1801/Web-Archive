@@ -7,10 +7,9 @@ if(!port){
 }
 /* 
 RESTFUL ROUTES using comments example: 
-
     GET /comments - list all comments.                      - Index Route.
     POST /comments - create a new comment.                  - Create Route. 
-    GET /comments/:id - Get one comment (using id)          - Show Route.
+    GET /comments/:id - Get one comment (using id)          - Show Route.88
     PUT or PATCH /comments/:id - updates one comment.       - Update Route.
     DELETE /comments/:id - Deletes one comment.             - Delete / Destroy Route.
 */

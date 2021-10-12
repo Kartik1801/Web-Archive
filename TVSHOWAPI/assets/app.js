@@ -35,12 +35,12 @@ const showResult= (sr,searchresult)=>{
     const main=document.querySelector(".main");
     const searchResult=document.querySelector("h2");
     main.appendChild(searchResult);
-    const c=document.createElement("sl-card");
-    c.setAttribute("class","card-overview");
+    const c=document.createElement("div");
+    c.setAttribute("class","container");
     for(let shows of searchresult){
         if(shows){
-            const r=document.createElement("div");
-        r.setAttribute("class","res");
+            const r=document.createElement("sl-card");
+        r.setAttribute("class","card-overview");
         console.log(shows);
         const img=document.createElement("img");
         if(shows.show.image!=null)

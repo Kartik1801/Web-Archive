@@ -35,8 +35,8 @@ const showResult= (sr,searchresult)=>{
     const main=document.querySelector(".main");
     const searchResult=document.querySelector("h2");
     main.appendChild(searchResult);
-    const c=document.createElement("div");
-    c.setAttribute("class","container");
+    const c=document.createElement("sl-card");
+    c.setAttribute("class","card-overview");
     for(let shows of searchresult){
         if(shows){
             const r=document.createElement("div");

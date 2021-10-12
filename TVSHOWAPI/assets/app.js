@@ -1,4 +1,9 @@
 const form= document.querySelector("#searchform");
+const submit_click = document.querySelector("#search-btn");
+submit_click.addEventListener("click",function(){
+    form.submit();
+})
+
 form.addEventListener('submit',async function (e){
     e.preventDefault();
     const searchResult=document.querySelector("h2");

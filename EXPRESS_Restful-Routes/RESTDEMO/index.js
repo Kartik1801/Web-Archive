@@ -8,7 +8,6 @@ RESTFUL ROUTES using comments example:
     DELETE /comments/:id - Deletes one comment.             - Delete / Destroy Route.
 
 */
-
 const express = require("express");
 const app = express();
 let port = process.argv[2]; 

@@ -8,9 +8,7 @@ body{
     font-size: 15px;
     margin: 0;
 }
-
 /*---- Nav-Section ---- */
-
 #wrap{
   display: flex;
   background-color:#556;

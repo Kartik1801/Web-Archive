@@ -20,18 +20,15 @@ body{
   flex-wrap: wrap;
   box-shadow: 0.2em 0.25em 0.5em 0.1em #afafaf;
  }
-
  .navhead{
    margin: auto;
    font-size: 1.75em;  
    font-family: 'Palette Mosaic', cursive;
  }
-
  #searchform {
    margin: auto;
    display:inline;
  }
- 
  #searchform input[type="text"]{
  outline: none;
  display: inline;
@@ -51,33 +48,27 @@ body{
  transition: width 4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
  cursor: pointer;
  }
-
  #searchform input[type="text"]:focus{
   cursor: text;
   width: 15em;
   z-index: 1;
   border-bottom: 1px solid azure;
  }
- 
  #searchform input[type="text"]:focus:hover{
  border-bottom: 1px solid azure;
  }
-
  #searchform input[type="text"]::placeholder{
   color: azure;
   opacity: 0;
   transition: opacity 4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
 } 
-
 #searchform input[type="text"]:focus::placeholder{
 opacity: 0.5 ;
 transition: opacity 4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
- }
- 
- #searchform input[type="text"]:focus:hover::placeholder{
+} 
+#searchform input[type="text"]:focus:hover::placeholder{
     opacity: 0.75 ;
- }
-
+}
 
 
 button{

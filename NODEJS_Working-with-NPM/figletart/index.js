@@ -1,5 +1,5 @@
-const figlet=require('figlet')
-const color=require('colors')
+const figlet=require('figlet');
+const color=require('colors');
 figlet('Hello !',(e,data)=>{
     if(e){
         console.log('Something went wrong');
@@ -8,5 +8,4 @@ figlet('Hello !',(e,data)=>{
     }
     else
         console.log(data.rainbow);
-
 })

@@ -1,5 +1,4 @@
 body{
-
     font-family: 'Roboto',sans-serif;
     display: flex;
     align-items:center ;
@@ -15,7 +14,6 @@ div{
     align-items:center;
     justify-content:center; 
 }
-
 button{
     font-family: inherit;
     background:none;

@@ -21,7 +21,6 @@ btn.addEventListener("mouseover",(e)=>{
     const ig=255-g;
     const ib=255-b;
     btn.style.boxShadow=`0 0.5em 0.5em -0.4em rgb(${ir},${ig},${ib})`;
-    
 })
 btn.addEventListener("mouseout",(e)=>{
     btn.style.boxShadow="";

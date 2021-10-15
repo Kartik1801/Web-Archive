@@ -15,8 +15,6 @@ btn.addEventListener("click",(e)=>{
     h.style.color=`rgb(${ir},${ig},${ib})`;
     btn.style.color=`rgb(${ir},${ig},${ib})`;
     btn.style.borderColor=`rgb(${ir},${ig},${ib})`;
-    
-    
 })
 btn.addEventListener("mouseover",(e)=>{
     const ir=255-r;

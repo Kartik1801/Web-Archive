@@ -27,17 +27,16 @@ app.post('/comments',(req,res)=>{
     const {username,comment}=req.body;
     const id = uid();
     comments.push({ id,username,comment});    
-    console.log(req.body);
     res.redirect('/comments');
 });
-
+app.patch('comments',(req,res)=>{
+    res.send("PATCH");
+})
 
 app.get('/tacos',(req,res)=>{
-    console.log(req.query);
     res.send("GET /Tacos Response !");
 })
 app.post('/tacos',(req,res)=>{
-    console.log(req.body);
     res.send("POST /Tacos Response !");
 })
 app.listen(port,()=>{

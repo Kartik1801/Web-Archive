@@ -27,18 +27,12 @@ app.post('/comments',(req,res)=>{
     const {username,comment}=req.body;
     const id = uid();
     comments.push({ id,username,comment});    
-    res.redirect('/comments');
+    res.sendFile('index');
 });
-app.patch('comments',(req,res)=>{
+app.patch('/comments/:id',(req,res)=>{
     res.send("PATCH");
 })
 
-app.get('/tacos',(req,res)=>{
-    res.send("GET /Tacos Response !");
-})
-app.post('/tacos',(req,res)=>{
-    res.send("POST /Tacos Response !");
-})
 app.listen(port,()=>{
     console.log("Listening on port: " + port);
 })

@@ -12,14 +12,12 @@
             <% for (let c of comments){ %>
             <li><%= c.comment  %> - <b><%= c.username %></b>
             <a href="/comments/<%=c.id%>">Details</a>
-            <form action="/comments/<%= c.id %> " method="patch">
-            <button>Edit Comment</button>
-            </form>
+            <a href="/comments/<%=c.id%>" method="patch">edit</a>
             </li>
             <% } %>
         </ul>
         <form action="/comments/new">
-        <button>Enter Comment</button>
+            <button>Enter Comment</button>
         </form>
 </body>
 </html>

@@ -10,6 +10,9 @@
     <h1>Comment Id : <%= comment.id %> </h1>
      <h3>User: <em> <%= comment.username %></em>: <br> Comment: <em><%= comment.comment %></em> </h3>
      <a href="/comments">Back</a>    
-     <a href="/comments/<%= comment.id %>/edit">Edit</a>    
+     <a href="/comments/<%= comment.id %>/edit">Edit</a>
+     <form action="/comments/<%= comment.id %>?_method=DELETE" method="post">
+        <button>DELETE</button>
+     </form>    
 </body>
 </html>

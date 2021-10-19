@@ -22,7 +22,7 @@ if(!port){
     port=3000
 }
 
-const comments=[
+let comments=[
     {
         id: uid(),
         username: "Todd",
@@ -91,6 +91,11 @@ app.patch('/comments/:id',(req,res)=>{
       res.redirect('/comments');
   })
   
+app.delete('/comments/:id',(req,res)=>{
+    const {id}=req.params;
+    comments= comments.filter(c => c.id !== id);
+    res.redirect('/comments');
+})
 
   app.listen(port,()=>{
     console.log("Listening on port: " + port);

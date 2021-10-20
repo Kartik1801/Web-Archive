@@ -18,7 +18,7 @@ const methodOverride=require('method-override');
 
 let port = process.argv[2]; 
 if(!port){
-    port=3000
+    port=3000;
 }
 
 let comments=[
@@ -45,10 +45,10 @@ let comments=[
 ]
 
 app.use(express.urlencoded({extended:true}));
-app.use(methodOverride("_method"))
+app.use(methodOverride("_method"));
 app.use(express.json());
 
-app.set("views",path.join(__dirname,"views"))
+app.set("views",path.join(__dirname,"views"));
 app.set("view engine", "ejs");
 
 app.get('/comments',(req,res)=>{
@@ -75,7 +75,7 @@ app.get('/comments/:id/edit',(req,res)=>{
       const {id}=req.params;
       const comment= comments.find(c=>c.id===id);
       res.render('comments/edit',{comment});
-  });
+});
 app.patch('/comments/:id',(req,res)=>{
       const {id}=req.params;
       const foundComment= comments.find(c=>c.id===id)
@@ -84,14 +84,14 @@ app.patch('/comments/:id',(req,res)=>{
       console.log(req.body)
       foundComment.comment=newComment;
       res.redirect('/comments');
-  })
+});
   
 app.delete('/comments/:id',(req,res)=>{
     const {id}=req.params;
     comments= comments.filter(c => c.id !== id);
     res.redirect('/comments');
-})
+});
 
   app.listen(port,()=>{
     console.log("Listening on port: " + port);
-})
+});

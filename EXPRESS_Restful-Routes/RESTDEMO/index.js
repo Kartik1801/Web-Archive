@@ -14,7 +14,6 @@ const app = express();
 const path=require('path');
 
 const {v4:uid} =require('uuid');
-
 const methodOverride=require('method-override');
 
 let port = process.argv[2]; 
@@ -52,11 +51,9 @@ app.use(express.json());
 app.set("views",path.join(__dirname,"views"))
 app.set("view engine", "ejs");
 
-
 app.get('/comments',(req,res)=>{
     res.render('comments/index',{comments});    
 });
-
 
 app.get('/comments/new',(req,res)=>{
     res.render('comments/new');

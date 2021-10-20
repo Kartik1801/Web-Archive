@@ -65,7 +65,6 @@ app.post('/comments',(req,res)=>{
     res.redirect('/comments');
 });
 
-
 app.get('/comments/:id',(req,res)=>{
     const {id}=req.params;
     const comment= comments.find(c=>c.id===id)

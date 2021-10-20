@@ -1,11 +1,11 @@
 /* 
 RESTFUL ROUTES using comments example: 
 
-    GET /comments - List/show all comments.                  - Index Route.
-    POST /comments - Creates a new comment.                  - Create Route. 
-    GET /comments/:id - Get one comment (using id)           - Show Route.
-    PUT or PATCH /comments/:id - Updates one comment.        - Update Route.
-    DELETE /comments/:id - Deletes one comment.              - Delete/Destroy Route.
+    GET /comments - List/show all comments.                 - Index Route.
+    POST /comments - Creates a new comment.                 - Create Route. 
+    GET /comments/:id - Get one comment (using id)          - Show Route.
+    PUT or PATCH /comments/:id - Updates one comment.       - Update Route.
+    DELETE /comments/:id - Deletes one comment.             - Delete/Destroy Route.
 */
 
 const express = require("express");

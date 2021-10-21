@@ -85,7 +85,7 @@ app.patch('/comments/:id',(req,res)=>{
       foundComment.comment=newComment;
       res.redirect('/comments');
 });
-  
+// Delete Route.
 app.delete('/comments/:id',(req,res)=>{
     const {id}=req.params;
     comments= comments.filter(c => c.id !== id);

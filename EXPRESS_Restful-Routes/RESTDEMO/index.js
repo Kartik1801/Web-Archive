@@ -70,7 +70,7 @@ app.get('/comments/:id',(req,res)=>{
     const comment= comments.find(c=>c.id===id)
     res.render('comments/show',{comment});
 });
-
+// Update Route.
 app.get('/comments/:id/edit',(req,res)=>{
       const {id}=req.params;
       const comment= comments.find(c=>c.id===id);

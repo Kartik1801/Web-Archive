@@ -50,11 +50,11 @@ app.use(express.json());
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine", "ejs");
-
+// Index Route.
 app.get('/comments',(req,res)=>{
     res.render('comments/index',{comments});    
 });
-
+// Create Route.
 app.get('/comments/new',(req,res)=>{
     res.render('comments/new');
 });
@@ -64,7 +64,7 @@ app.post('/comments',(req,res)=>{
     comments.push({ id,username,comment});    
     res.redirect('/comments');
 });
-
+// Index Route.
 app.get('/comments/:id',(req,res)=>{
     const {id}=req.params;
     const comment= comments.find(c=>c.id===id)

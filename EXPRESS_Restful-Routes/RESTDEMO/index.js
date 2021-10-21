@@ -64,7 +64,7 @@ app.post('/comments',(req,res)=>{
     comments.push({ id,username,comment});    
     res.redirect('/comments');
 });
-// Index Route.
+// Show Route.
 app.get('/comments/:id',(req,res)=>{
     const {id}=req.params;
     const comment= comments.find(c=>c.id===id)

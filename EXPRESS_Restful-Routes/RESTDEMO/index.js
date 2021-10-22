@@ -16,9 +16,7 @@ const {v4:uid} =require('uuid');
 const methodOverride=require('method-override');
 
 let port = process.argv[2]; 
-if(!port){
-    port=3000;
-}
+if(!port)port=3000;
 
 let comments=[
     {

@@ -51,11 +51,13 @@ app.set("views",path.join(__dirname,"views"));
 app.set("view engine", "ejs");
 
 // Index Route.
+
 app.get('/comments',(req,res)=>{
     res.render('comments/index',{comments});    
 });
 
 // Create Route.
+
 app.get('/comments/new',(req,res)=>{
     res.render('comments/new');
 });
@@ -67,6 +69,7 @@ app.post('/comments',(req,res)=>{
 });
 
 // Show Route.
+
 app.get('/comments/:id',(req,res)=>{
     const {id}=req.params;
     const comment= comments.find(c=>c.id===id)
@@ -74,6 +77,7 @@ app.get('/comments/:id',(req,res)=>{
 });
 
 // Update Route.
+
 app.get('/comments/:id/edit',(req,res)=>{
       const {id}=req.params;
       const comment= comments.find(c=>c.id===id);
@@ -90,6 +94,7 @@ app.patch('/comments/:id',(req,res)=>{
 });
 
 // Delete Route.
+
 app.delete('/comments/:id',(req,res)=>{
     const {id}=req.params;
     comments= comments.filter(c => c.id !== id);

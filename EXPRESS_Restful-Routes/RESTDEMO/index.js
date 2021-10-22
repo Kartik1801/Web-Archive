@@ -7,7 +7,6 @@ RESTFUL ROUTES using comments example:
     PUT or PATCH /comments/:id - Updates one comment.       - Update Route.
     DELETE /comments/:id - Deletes one comment.             - Delete/Destroy Route.
 */
-
 const express = require("express");
 const app = express();
 

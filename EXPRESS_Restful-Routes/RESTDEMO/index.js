@@ -43,15 +43,11 @@ app.use(express.json());
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine", "ejs");
-
 // Index Route.
-
 app.get('/comments',(req,res)=>{
     res.render('comments/index',{comments});    
 });
-
 // Create Route.
-
 app.get('/comments/new',(req,res)=>{
     res.render('comments/new');
 });
@@ -61,17 +57,13 @@ app.post('/comments',(req,res)=>{
     comments.push({ id,username,comment});    
     res.redirect('/comments');
 });
-
 // Show Route.
-
 app.get('/comments/:id',(req,res)=>{
     const {id}=req.params;
     const comment= comments.find(c=>c.id===id)
     res.render('comments/show',{comment});
 });
-
 // Update Route.
-
 app.get('/comments/:id/edit',(req,res)=>{
       const {id}=req.params;
       const comment= comments.find(c=>c.id===id);
@@ -86,15 +78,12 @@ app.patch('/comments/:id',(req,res)=>{
       foundComment.comment=newComment;
       res.redirect('/comments');
 });
-
 // Delete Route.
-
 app.delete('/comments/:id',(req,res)=>{
     const {id}=req.params;
     comments= comments.filter(c => c.id !== id);
     res.redirect('/comments');
 });
-
 app.listen(port,()=>{
     console.log("Listening on port: " + port);
 });

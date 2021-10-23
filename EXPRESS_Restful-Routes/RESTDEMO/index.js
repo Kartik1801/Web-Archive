@@ -12,7 +12,6 @@ const app = express();
 const path=require('path');
 const {v4:uid} =require('uuid');
 const methodOverride=require('method-override');
-
 let port = process.argv[2]; 
 if(!port)port=3000;
 
@@ -38,7 +37,6 @@ let comments=[
         comment: "こんにちは"
     }
 ]
-
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.json());

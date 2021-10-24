@@ -35,7 +35,7 @@ form.addEventListener('submit',async function (e){
     //Clears the Text input
     input.value="";
 })
-const showResult= (sr,searchresult)=>{
+ const showResult= (sr,searchresult)=>{
     const main=document.querySelector(".main");
     const searchResult=document.querySelector("h2");
     main.appendChild(searchResult);

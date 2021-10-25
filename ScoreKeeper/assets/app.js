@@ -28,9 +28,8 @@ player2Btn.addEventListener("click",()=>{
     {
     player1Btn.disabled=true;
         player2Btn.disabled=true;
-        player2.setAttribute("class","has-text-success")
-        player1.setAttribute("class","has-text-danger")
-
+        player2.setAttribute("class","has-text-success");
+        player1.setAttribute("class","has-text-danger");
     }
 })
 

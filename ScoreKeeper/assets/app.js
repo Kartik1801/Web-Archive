@@ -32,7 +32,6 @@ player2Btn.addEventListener("click",()=>{
         player1.setAttribute("class","has-text-danger");
     }
 })
-
 reset.addEventListener("click",()=>{
     const selector=document.querySelector("#selector");
     const bestof=parseInt(selector.value);

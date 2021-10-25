@@ -18,7 +18,6 @@ player1Btn.addEventListener("click",()=> {
         player2.setAttribute("class","lose")
     }
 })
-
 player2Btn.addEventListener("click",()=>{
     const selector=document.querySelector("#selector");
     const bestof=parseInt(selector.value);

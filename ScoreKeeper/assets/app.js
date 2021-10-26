@@ -38,6 +38,6 @@ reset.addEventListener("click",()=>{
     selector.disabled=false;
     player1Btn.disabled=false;
     player2Btn.disabled=false;
-    player1.removeAttribute("class")
-    player2.removeAttribute("class")
+    player1.removeAttribute("class");
+    player2.removeAttribute("class");
 })

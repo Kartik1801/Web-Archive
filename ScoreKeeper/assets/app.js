@@ -13,8 +13,8 @@ player1Btn.addEventListener("click",()=> {
     {
     player1Btn.disabled=true;
         player2Btn.disabled=true;
-        player1.setAttribute("class","has-text-success")
-        player2.setAttribute("class","lose")
+        player1.setAttribute("class","has-text-success");
+        player2.setAttribute("class","lose");
     }
 })
 player2Btn.addEventListener("click",()=>{

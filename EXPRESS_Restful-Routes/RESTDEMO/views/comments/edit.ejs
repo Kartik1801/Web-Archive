@@ -10,8 +10,7 @@
     <h3>User: <em><%= comment.username %></em></h3>    
     <form action="/comments/<%=comment.id%>?_method=PATCH" method="post">
             <section>
-                <label for="Comment">Edit comment: </label>
-                <br>
+                <label for="Comment">Edit comment: </label><br>
                 <textarea name="comment" id="Comment" cols="30" rows="5"><%= comment.comment %></textarea>
             </section>    
             <button>EDIT</button> <a href="/comments">Cancel</a>

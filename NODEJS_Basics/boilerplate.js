@@ -15,8 +15,7 @@ if(folderName[0]){
  catch(e){
     console.log("Something is wrong!");
     console.log(e);
- }
- });
+ }});
 }
 else {
     console.log("Provide folder name");

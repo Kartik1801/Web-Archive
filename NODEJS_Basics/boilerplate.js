@@ -12,11 +12,12 @@ if(folderName[0]){
          fs.writeFileSync(`${path.join(element,'/Assets/app.js')}`,''); 
          console.log(`Created Boilerplate at ${element}`)
       }
- catch(e){
-    console.log("Something is wrong!");
-    console.log(e);
- }});
+      catch(e){
+         console.log("Something is wrong!");
+         console.log(e);
+      }
+   });
 }
-else {
+else{
     console.log("Provide folder name");
 }

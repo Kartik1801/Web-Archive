@@ -20,7 +20,8 @@ app.set('views', path.join(__dirname, '/views'));
 
 app.get('/', (req, res) =>{
     res.render('home');
-});
+}); 
+   
 
 app.get('/r/:subreddit',(req,res)=>{
     const {subreddit} = req.params;

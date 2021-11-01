@@ -12,7 +12,6 @@ req.send()
 */
 //-----------------------------------------------------------------------------------------
 //Method 2 : Using fetch API :
-
 /*
 const req= fetch('https://api.cryptonator.com/api/ticker/btc-usd') 
 req.then(res =>{

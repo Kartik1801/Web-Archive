@@ -1,4 +1,4 @@
-const body=document.querySelector("body");
+    const body=document.querySelector("body");
 const randomColor=()=>{return Math.floor(Math.random() *255+1)}
 const btn=document.querySelector("button");
 const h=document.querySelector("h2");

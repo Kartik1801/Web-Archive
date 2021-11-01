@@ -1,7 +1,7 @@
 // Language Guesser
 const args=process.argv[2];
 const franc=require('franc');
-const lang = require('langs')   
+const lang = require('langs');  
 element=args;
 const code=franc(element);
 if(code!='und')

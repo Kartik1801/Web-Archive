@@ -1,5 +1,4 @@
 //Cryptonator API :https://api.cryptonator.com/api/ticker/btc-usd
-
 // Methond 1 : USIng XMLHtmlRequest
 /* 
 const req = new XMLHttpRequest();
@@ -11,7 +10,6 @@ req.onerror =function (err){console.log("Error : ", err)}
 req.open('GET','https://api.cryptonator.com/api/ticker/btc-usd');
 req.send()
 */
-
 //-----------------------------------------------------------------------------------------
 //Method 2 : Using fetch API :
 

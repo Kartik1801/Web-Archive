@@ -13,5 +13,5 @@ const movieSchema = new mongoose.Schema({
     rating: String,
 });
 const Movie = mongoose.model('Movie',movieSchema);
-const VE = new Movie({title: "Violet Evergarden", year: 2021,rating: "U",score: 9});
+const VE = new Movie({ title: "Violet Evergarden", year: 2021, rating: "U", score: 9 });
 

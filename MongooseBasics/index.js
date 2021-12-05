@@ -1,4 +1,3 @@
-// const {TextDecoder, TextEncoder} = require("util");
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/movieApp')
  .then(()=>{console.log("Connected!!!");}  
@@ -6,8 +5,7 @@ mongoose.connect('mongodb://localhost:27017/movieApp')
  .catch((err)=>{
      console.log("Error",err);
  })
-
- const movieSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
     title: String,
     year: Number,
     score: Number,
@@ -25,4 +23,7 @@ const VE = new Movie({ title: "Violet Evergarden", year: 2021, rating: "U", scor
 /* 
 Movie.find({})
 .then((x) =>{console.log(x)})
+Movie.find({year:{$lt: 2021}}).then(data => data.forEach((d)=>console.log(d.title)))
  */
+Movie.updateOne({title: "Violet Evergarden"},{title: "Violet Evergarden: The Movie", rating: "PG-13",year: 2020})
+.then(() => {console.log("Updated")});

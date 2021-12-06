@@ -81,6 +81,7 @@ app.delete('/comments/:id',(req,res)=>{
     comments= comments.filter(c => c.id !== id);
     res.redirect('/comments');
 });
+app.get("*",(req,res)=>{res.render("404")})
 app.listen(port,()=>{
     console.log("Listening on port: " + port);
 });

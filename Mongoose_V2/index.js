@@ -48,7 +48,6 @@ productSchema.methods.toggleOnSale = function () {
     return this.save();
 }
 
-
 productSchema.methods.addCategory = function (newCat) {
     this.categories.push(newCat);
     return this.save();
@@ -60,7 +59,6 @@ productSchema.statics.fireSale = function () {
 
 
 const Product = mongoose.model('Product', productSchema);
-
 
 const findProduct = async () => {
     const foundProduct = await Product.findOne({ name: 'Mountain Bike' });

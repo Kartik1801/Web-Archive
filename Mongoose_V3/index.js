@@ -11,6 +11,14 @@ const personSchema = new mongoose.Schema({
 });
 // exists only in js side not in db side.
 personSchema.virtual("fullName").get(function(){return `${this.first} ${this.last}`;});
+// MIDDLEWARE FUNCTIONS:
+personSchema.pre("save",async function(next){
+    console.log("ABOUT TO SAVE !");
+})
+personSchema.post("save",async function(next){
+    console.log("DONE SAVING !");
+})
+
 const Person = mongoose.model('Person', personSchema);
 const kd = new Person({
     first: "Kartik",
@@ -19,10 +27,3 @@ const kd = new Person({
 // kd.fullName
 // kd.save();
 
-// MIDDLEWARE FUNCTIONS:
-personSchema.pre("save",async function(next){
-    console.log("ABOUT TO SAVE !");
-})
-personSchema.post("save",async function(next){
-    console.log("DONE SAVING !");
-})

@@ -10,8 +10,7 @@ const app = express();
 const path=require('path');
 const {v4:uid} =require('uuid');
 const methodOverride=require('method-override');
-let port = process.argv[2]; 
-if(!port)port=3000;
+require("dotenv").config();
 let comments=[
     {
         id: uid(),
@@ -82,6 +81,6 @@ app.delete('/comments/:id',(req,res)=>{
     res.redirect('/comments');
 });
 app.get("*",(req,res)=>{res.render("404")})
-app.listen(port,()=>{
-    console.log("Listening on port: " + port);
+app.listen(process.env.PORT,()=>{
+    console.log("Listening on port: " + process.env.PORT);
 });

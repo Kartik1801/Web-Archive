@@ -10,7 +10,7 @@
     <h1>Available Products!</h1>
     <ul>
         <% for (let product of products){ %>
-            <li><a href="/products/<%=product.id%>"><%= product.name %></a> </li>
+            <li><a href="/products/<%=product.id%>"><%= product.name %></a>    <a href="/products/<%=product._id%>?_method=DELETE" method="post">remove</a></li>
         <% } %>     
     </ul>
 </body>

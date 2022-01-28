@@ -27,7 +27,6 @@
             res.redirect('/products');
         })
         
-    
     // Edit a product
     app.get('/products/:id/edit', async (req, res) => {
         const { id } = req.params;

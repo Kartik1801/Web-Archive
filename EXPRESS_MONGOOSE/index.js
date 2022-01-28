@@ -4,11 +4,13 @@
     mongoose.connect(`mongodb://localhost:27017/vendor`)
      .then(() => console.log("Connected to mongo!!!"))
      .catch( err => console.log("Error",err))
+
     // Express middlewares
     app.use(express.urlencoded({extended:true}))
     app.use(methodOverride("_method"))
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
+    
     // Routes: 
     // Show All Products
     app.get(`/products`,async (req, res) => {
@@ -16,6 +18,7 @@
         const products =category?await Product.find({category}):await Product.find({});
         res.render('products/index', {products: products, category : category?category:"All"});
     })
+    
     // Add a product
     app.get("/products/new", async (req, res) => {
         const category = await Product.find({}).distinct("category");
@@ -26,6 +29,7 @@
             await newProduct.save();
             res.redirect('/products');
         })
+    
     // Edit a product
     app.get('/products/:id/edit', async (req, res) => {
         const { id } = req.params;
@@ -38,12 +42,14 @@
         const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true });
         res.redirect(`/products/${product._id}`);
     })
+
     // Remove a product
     app.delete('/products/:id', async (req, res) => {
         const { id } = req.params;
         const product = await Product.findByIdAndRemove(id);
         res.redirect(`/products`);
     })
+
     // Show Product Details
     app.get('/products/:id', async (req, res) => {
         const { id } = req.params;

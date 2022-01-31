@@ -3,7 +3,7 @@
     const productSchema = new mongoose.Schema({
          name: {
              type : String,
-             required: true
+             required: [true, "Name Cannot Be Blank"]
          },
          price: {
              type: Number,

@@ -82,6 +82,14 @@
             res.render("products/details", {product});
     }))
 
+    app.use((err, req, res, next) => {
+        console.log(err.name);
+        /* if(err.name === "Validation error") // Do this 
+        if(err.name === "Cast error") // Do this 
+        else // Do this */
+        next(err);
+    })
+
     // Custom Error Handler:
     app.use((err, req, res, next) => {
         const {status = 500, message = "Something Went Wrong!!!"} = err;

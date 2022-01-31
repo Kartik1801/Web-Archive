@@ -56,6 +56,14 @@
         const product = await Product.findById(id);
         res.render("products/details", {product});
     })
+
+     // Custom Error Handler:
+    app.use((err, req, res, next) => {
+        const {status = 500} = err;
+        const {message = "Something Went Wrong!!!"} = err;
+        res.status(status).send(message);
+    });
+
          
     app.listen(process.env.PORT, () => {
         console.log('Listening on port:', process.env.PORT);

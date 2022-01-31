@@ -1,7 +1,7 @@
 // IIFE - Style :)  
-((express, app, path, dotenv, mongoose, Product, methodOverride) => {   
+((express, app, path, dotenv, mongoose, Product, methodOverride, generateError) => {   
     // MongoDB connection
-    mongoose.connect(`mongodb://localhost:27017/vendor`)
+    mongoose.connect(`mongodb://localhost:27017/vendors2`)
      .then(() => console.log("Connected to mongo!!!"))
      .catch( err => console.log("Error",err))
 
@@ -68,5 +68,6 @@
     require(`dotenv`).config(),
     require(`mongoose`),
     require(`./models/product`),
-    require(`method-override`)
+    require(`method-override`),
+    require(`./generateError`)
 )

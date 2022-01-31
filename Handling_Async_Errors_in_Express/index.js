@@ -17,14 +17,16 @@
     // Show All Products
     app.get(`/products`,async (req, res, next) => {
         const { category } = req.query;
-        if (!category) return next(new generateError(404,"No Category Found"));
         const products =category?await Product.find({category}):await Product.find({});
+        if (!products) 
+            return next(new generateError(404,"No Product Found"));
         res.render('products/index', {products: products, category : category?category:"All"});
     })
     // Add a product
-    app.get("/products/new", async (req, res) => {
+    app.get("/products/new", async (req, res, next) => {
         const category = await Product.find({}).distinct("category");
-        if (!category) return next(new generateError(404,"No Category Found"));
+        if (!category) 
+            return next(new generateError(404,"No Category Found"));
         res.render("products/new",{categories: category});
     })
     app.post('/products',async (req, res) => {
@@ -33,32 +35,37 @@
             res.redirect('/products');
         })
     // Edit a product
-    app.get('/products/:id/edit', async (req, res) => {
+    app.get('/products/:id/edit', async (req, res, next) => {
         const { id } = req.params;
         const product = await Product.findById(id);
-        if (!product) return next(new generateError(404,"No Product Found"));
+        if (!product) 
+            return next(new generateError(404,"No Product Found"));
         const category = await Product.find({}).distinct("category");
-        if (!category) return next(new generateError(404,"No Category Found"));
+        if (!category) 
+            return next(new generateError(404,"No Category Found"));
         res.render("products/edit",{product, categories: category});
     })
-    app.put('/products/:id', async (req, res) => {
+    app.put('/products/:id', async (req, res, next) => {
         const { id } = req.params;
         const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true });
-        if (!product) return next(new generateError(404,"No Product Found"));
+        if (!product) 
+            return next(new generateError(404,"No Product Found"));
         res.redirect(`/products/${product._id}`);
     })
     // Remove a product
-    app.delete('/products/:id', async (req, res) => {
+    app.delete('/products/:id', async (req, res, next) => {
         const { id } = req.params;
         const product = await Product.findByIdAndRemove(id);
-        if (!product) return next(new generateError(404,"No Product Found"));
+        if (!product)
+            return next(new generateError(404,"No Product Found"));
         res.redirect(`/products`);
     })
     // Show Product Details
-    app.get('/products/:id', async (req, res) => {
+    app.get('/products/:id', async (req, res, next) => {
         const { id } = req.params;
         const product = await Product.findById(id);
-        if (!product) return next(new generateError(404,"No Product Found"));
+        if (!product) 
+            return next(new generateError(404,"No Product Found"));
         res.render("products/details", {product});
     })
      // Custom Error Handler:

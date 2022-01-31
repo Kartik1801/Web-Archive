@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const generateError = require('./generateError')
+
 app.use((req,res,next)=>{
     req.requestTime = (new Date(Date.now())).toGMTString();
     console.log(req.method, req.path);
@@ -17,7 +19,11 @@ const verifyPassword = (req,res,next) => {
     if(password === "MyApp"){
         next();
     }
-    res.send("Password needed");
+    // res.send("Password needed");
+    /* res.status(401);
+    throw new Error("Password required") 
+    */
+    throw new generateError(401,"Password Required!");
 }
 
 app.get("/",(req, res, next) => {
@@ -30,8 +36,24 @@ app.get("/dogs",(req, res)=>{
     res.send(`Woof`)
 })
 
+app.get("/admin",(req, res) => {
+    throw new generateError(403, "You are not an administrator")
+})
+
+app.get("/err",(req, res)=>{
+    // NO SUCH THING EXIST :
+    somethingSomething.somethingSomething();
+
+})
+
 app.get("/secret",verifyPassword,(req,res)=>{
     res.send("My Secret : 'I sometimes wear headphones in public so that I dont have to talk to anyone.' "); 
+})
+ // Custom Error Handler:
+app.use((err, req, res, next) => {
+    const {status = 500} = err;
+    const {message = "Something Went Wrong!!!"} = err;
+    res.status(status).send(message);
 })
 
 app.use((req,res)=>{

@@ -5,5 +5,4 @@ class generateError extends Error {
         this.status = status;
     }
 }
-
 module.exports = generateError;

@@ -19,7 +19,6 @@
     }
 
     // Routes:
-
     app.get('/',(req,res) => {
         res.send("Go to /products")
     }) 

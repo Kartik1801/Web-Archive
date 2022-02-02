@@ -1,4 +1,4 @@
-((mongoose, Schema) => {
+((mongoose, Schema, Product) => {
     
     const farmSchema = new Schema({
         name: {
@@ -20,9 +20,18 @@
         ]
     })
 
+    farmSchema.post("findOneAndDelete", async (farm) => {
+        console.log(farm)
+        if(farm.product.length){
+           const res = await Product.deleteMany({_id:{$in: farm.product}});
+           console.log(res)
+        } 
+    })
+
     const Farm = mongoose.model("Farm",farmSchema);
     module.exports = Farm;
 })(
     require('mongoose'),
-    require('mongoose').Schema
+    require('mongoose').Schema,
+    require("./product")   
 )

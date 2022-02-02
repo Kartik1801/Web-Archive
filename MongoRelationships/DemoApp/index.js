@@ -18,7 +18,12 @@
         const farms = await Farm.find({});
         res.render('farms/index', {farms});
     })
-
+    
+    app.delete("/farms/:farm_id", async (req, res) => {
+        const {farm_id} = req.params;
+        const farm = await Farm.findByIdAndDelete(farm_id)
+        res.redirect("/farms")
+    })
     // Add a Farm:
      app.get("/farms/new", (req, res) =>{
         res.render("farms/new")
@@ -31,14 +36,15 @@
 
     // Show a farms:
     app.get("/farms/:id", async (req, res) =>{
-        const farm = await Farm.findById(req.params.id);
+        const farm = await Farm.findById(req.params.id).populate("product");
         res.render("farms/show",{farm})
     })
 
-    app.get("/farms/:farm_id/products",async (req, res) =>{
+    app.get("/farms/:farm_id/products/new",async (req, res) =>{
         const {farm_id} = req.params;
         const category = await Product.find({}).distinct("category");
-        res.render("products/new",{categories: category.length?category:["fruit", "vegetable", "diary"],farm_id});
+        const farm = await Farm.findById(farm_id)
+        res.render("products/new",{categories:["fruit", "vegetable", "dairy"], farm_id, farm});
     })
     app.post("/farms/:farm_id/products", async (req, res) => {
         const {farm_id} = req.params;
@@ -94,7 +100,7 @@
     // Show Product Details
     app.get('/products/:id', async (req, res) => {
         const { id } = req.params;
-        const product = await Product.findById(id);
+        const product = await Product.findById(id).populate("farm");
         res.render("products/details", {product});
     })
          

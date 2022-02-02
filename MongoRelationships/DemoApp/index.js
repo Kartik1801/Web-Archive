@@ -1,7 +1,8 @@
 // IIFE - Style :)  
-((express, app, path, dotenv, mongoose, Product, methodOverride) => {   
+((express, app, path, dotenv, mongoose, Product, methodOverride, Farm) => {   
+
     // MongoDB connection
-    mongoose.connect(`mongodb://localhost:27017/vendor`)
+    mongoose.connect(`mongodb://localhost:27017/DemoApp`)
      .then(() => console.log("Connected to mongo!!!"))
      .catch( err => console.log("Error",err))
 
@@ -11,7 +12,40 @@
     app.set('views', path.join(__dirname, 'views'));
     app.set('view engine', 'ejs');
     
-    // Routes: 
+    // FARM ROUTES:
+    // Farm Index:
+    app.get(`/farms`,async (req, res) => {
+        const farms = await Farm.find({});
+        res.render('farms/index', {farms});
+    })
+
+    // Add a Farm:
+     app.get("/farms/new", (req, res) =>{
+        res.render("farms/new")
+     })
+     app.post("/farms", async (req, res) => {
+        const farm = new Farm(req.body);
+        await farm.save();
+        res.redirect("farms")
+     })
+
+    // Show a farms:
+    app.get("/farms/:id", async (req, res) =>{
+        const farm = await Farm.findById(req.params.id);
+        res.render("farms/show",{farm})
+
+    })
+
+    app.get("/farms/:farm_id/products",async (req, res) =>{
+        const farm_id = req.params;
+        const category = await Product.find({}).distinct("category");
+        res.render("products/new",{categories: category.length?category:["fruit", "vegetable", "diary"],farm_id});
+    })
+    app.post("/farms/:farm_id/products", (req, res) => {
+        res.send(req.body);
+    })
+
+    // PRODUCTS ROUTES 
     // Show All Products
     app.get(`/products`,async (req, res) => {
         const { category } = req.query;
@@ -68,5 +102,6 @@
     require(`dotenv`).config(),
     require(`mongoose`),
     require(`./models/product`),
-    require(`method-override`)
+    require(`method-override`),
+    require(`./models/farm`)
 )

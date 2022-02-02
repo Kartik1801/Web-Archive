@@ -25,15 +25,15 @@
         }
     </style>
 </head>
-<body>
+<body> 
     <h1>Add a new product</h1>
-    <form action="/products" method="post">
+    <form action="/farms/<%=farm_id%>/products" method="post">
         <div><label for="name">Product Name: </label><input type="text" id="name" name="name" placeholder="Product Name"></div>
         <div><label for="price">Price: </label><input type="number" id="price" name="price" placeholder="Price"></div>
         <div>
             <label for="category">Category: </label>
             <select id="category" name="category" placeholder="Category">
-                <% for (let category of categories){ %> 
+                <% for (let category of categories){ console.log(categories, farm_id) %> 
                     <option value="<%= category %>"><%= category %></option>
                 <% } %>
             </select>

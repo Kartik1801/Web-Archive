@@ -33,17 +33,24 @@
     app.get("/farms/:id", async (req, res) =>{
         const farm = await Farm.findById(req.params.id);
         res.render("farms/show",{farm})
-
     })
 
     app.get("/farms/:farm_id/products",async (req, res) =>{
-        const farm_id = req.params;
+        const {farm_id} = req.params;
         const category = await Product.find({}).distinct("category");
         res.render("products/new",{categories: category.length?category:["fruit", "vegetable", "diary"],farm_id});
     })
-    app.post("/farms/:farm_id/products", (req, res) => {
-        res.send(req.body);
+    app.post("/farms/:farm_id/products", async (req, res) => {
+        const {farm_id} = req.params;
+        const farm = await Farm.findById(farm_id);
+        const product = new Product(req.body);
+        farm.product.push(product);
+        product.farm = farm;
+        await farm.save();
+        await product.save();
+        res.redirect(`/farms/${farm_id}`)
     })
+
 
     // PRODUCTS ROUTES 
     // Show All Products

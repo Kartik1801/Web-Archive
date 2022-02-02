@@ -1,6 +1,6 @@
 // File to populate Product database.
 ((mongoose, Product) => {   
-    mongoose.connect(`mongodb://localhost:27017/vendor`)
+    mongoose.connect(`mongodb://localhost:27017/DemoApp`)
      .then(() => console.log("Connected to mongo!!!"))
      .catch( err => console.log("Error",err))
 /* 

@@ -1,6 +1,6 @@
-((mongoose) => {   
+((mongoose, Schema) => {   
 
-    const productSchema = new mongoose.Schema({
+    const productSchema = new Schema({
          name: {
              type : String,
              required: true
@@ -14,6 +14,10 @@
              type: String,
              lowercase: true,
              enum: [ 'fruit', 'vegetable', 'dairy']
+         },
+         farm:{
+             type: Schema.Types.ObjectId,
+             ref: "Farm"
          }
      });
 
@@ -21,5 +25,6 @@
      module.exports = Product;
 })
 (
-    require('mongoose')
+    require('mongoose'),
+    require('mongoose').Schema
 )

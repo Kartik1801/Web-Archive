@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
+// Signing cookies verify wether the cookie has been tempered with
+
 app.use(cookieParser('Secret'))
 
 app.get("/user", (req, res) => {

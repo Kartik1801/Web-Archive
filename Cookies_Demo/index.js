@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
 
+// HMAC SIGNING COOKIES: LOOK INTO PACKAGE COOKIE PARSER FOR DETAILSs 
 // Signing cookies verify wether the cookie has been tempered with
 
 app.use(cookieParser('Secret'))

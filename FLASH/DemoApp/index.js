@@ -1,45 +1,50 @@
 // IIFE - Style :)  
-((express, app, path, dotenv, mongoose, Product, methodOverride, Farm) => {   
-
-    // MongoDB connection
+((express, app, path, dotenv, mongoose, Product, methodOverride, Farm, session, flash) => {   
+// MongoDB connection
     mongoose.connect(`mongodb://localhost:27017/DemoApp`)
      .then(() => console.log("Connected to mongo!!!"))
      .catch( err => console.log("Error",err))
 
-    // Express middlewares
-    app.use(express.urlencoded({extended:true}))
-    app.use(methodOverride("_method"))
+    const sessionOptions = { secret: "secret", resave: false, saveUninitialized: false}    
+    app.use(session(sessionOptions));
+    app.use(flash())
+
+// Express middlewares
+    app.use(express.urlencoded({extended:true}));
+    app.use(methodOverride("_method"));
+
+    app.use((req, res, next) => {
+        res.locals.messages = req.flash('success')
+    })
+
     app.set('views', path.join(__dirname, 'views'));
-    app.set('view engine', 'ejs');
-    
-    // FARM ROUTES:
-    // Farm Index:
+    app.set('view engine', 'ejs');   
+// FARM ROUTES:
+// Farm Index:
     app.get(`/farms`,async (req, res) => {
         const farms = await Farm.find({});
         res.render('farms/index', {farms});
-    })
-    
+    })    
     app.delete("/farms/:farm_id", async (req, res) => {
         const {farm_id} = req.params;
         const farm = await Farm.findByIdAndDelete(farm_id)
         res.redirect("/farms")
     })
-    // Add a Farm:
+// Add a Farm:
      app.get("/farms/new", (req, res) =>{
         res.render("farms/new")
      })
      app.post("/farms", async (req, res) => {
         const farm = new Farm(req.body);
         await farm.save();
+        req.flash("success", "Successfully Added a New Farm")
         res.redirect("farms")
      })
-
-    // Show a farms:
+// Show a farms:
     app.get("/farms/:id", async (req, res) =>{
         const farm = await Farm.findById(req.params.id).populate("product");
         res.render("farms/show",{farm})
     })
-
     app.get("/farms/:farm_id/products/new",async (req, res) =>{
         const {farm_id} = req.params;
         const category = await Product.find({}).distinct("category");
@@ -57,16 +62,14 @@
         res.redirect(`/farms/${farm_id}`)
     })
 
-
-    // PRODUCTS ROUTES 
-    // Show All Products
+// PRODUCTS ROUTES 
+// Show All Products
     app.get(`/products`,async (req, res) => {
         const { category } = req.query;
         const products =category?await Product.find({category}):await Product.find({});
         res.render('products/index', {products: products, category : category?category:"All"});
     })
-    
-    // Add a product
+// Add a product
     app.get("/products/new", async (req, res) => {
         const category = await Product.find({}).distinct("category");
         res.render("products/new",{categories: category});
@@ -75,9 +78,8 @@
             const newProduct = Product(req.body);
             await newProduct.save();
             res.redirect('/products');
-        })
-    
-    // Edit a product
+        }) 
+// Edit a product
     app.get('/products/:id/edit', async (req, res) => {
         const { id } = req.params;
         const product = await Product.findById(id);
@@ -89,21 +91,18 @@
         const product = await Product.findByIdAndUpdate(id, req.body, {runValidators: true, new: true });
         res.redirect(`/products/${product._id}`);
     })
-
-    // Remove a product
+// Remove a product
     app.delete('/products/:id', async (req, res) => {
         const { id } = req.params;
         const product = await Product.findByIdAndRemove(id);
         res.redirect(`/products`);
     })
-
-    // Show Product Details
+// Show Product Details
     app.get('/products/:id', async (req, res) => {
         const { id } = req.params;
         const product = await Product.findById(id).populate("farm");
         res.render("products/details", {product});
-    })
-         
+    })         
     app.listen(process.env.PORT, () => {
         console.log('Listening on port:', process.env.PORT);
     })
@@ -116,5 +115,7 @@
     require(`mongoose`),
     require(`./models/product`),
     require(`method-override`),
-    require(`./models/farm`)
+    require(`./models/farm`),
+    require(`express-session`),
+    require(`connect-flash`)
 )

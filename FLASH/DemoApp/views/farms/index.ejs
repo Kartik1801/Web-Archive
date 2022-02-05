@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farms</title>
+    <style>
+        li{
+            margin: 1.5%;
+        }
+        
+        form{
+            display: inline;
+        }
+        button {
+            margin: 5px;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>FARMS!</h1>
+    <ul>
+        <% for (let farm of farms){ %>
+            <li><a href="/farms/<%=farm._id%>"><%= farm.name %></a>
+        <% } %>     
+    </ul>
+    <a href="/farms/new">Add a new Farm</a>
+    <br>
+    <a href="/farms">HOME PAGE</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+((mongoose, Schema, Product) => {
+    
+    const farmSchema = new Schema({
+        name: {
+            type: String,
+            required: [true, "Farm must have a name"]
+        },
+        city: {
+        type: String
+        },
+        email: {
+             type: String,
+            required: [true, "Email required"]
+        },
+        product: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Product"
+            }
+        ]
+    })
+
+    farmSchema.post("findOneAndDelete", async (farm) => {
+        console.log(farm)
+        if(farm.product.length){
+           const res = await Product.deleteMany({_id:{$in: farm.product}});
+           console.log(res)
+        } 
+    })
+
+    const Farm = mongoose.model("Farm",farmSchema);
+    module.exports = Farm;
+})(
+    require('mongoose'),
+    require('mongoose').Schema,
+    require("./product")   
+)

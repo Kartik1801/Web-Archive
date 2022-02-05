@@ -1,5 +1,4 @@
 ((express, app, path, dotenv, mongoose, Product, methodOverride, generateError) => {   
-
     // MongoDB connection
     mongoose.connect(`mongodb://localhost:27017/vendors2`)
      .then(() => console.log("Connected to mongo!!!"))

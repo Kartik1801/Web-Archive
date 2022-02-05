@@ -1,8 +1,8 @@
 const session = require('express-session')
 const express = require('express');
 const app = express();
-
-app.use(session({ secret: 'secret' }))
+const sessionOptions = { secret: 'secret', resave: false, saveUninitialized: false };
+app.use(session(sessionOptions))
 
 app.get('/viewcount', (req, res) => {
     if (req.session.count) req.session.count += 1;

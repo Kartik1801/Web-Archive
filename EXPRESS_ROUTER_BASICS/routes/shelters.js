@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 router.get("/", (req, res) =>{
     res.send("ALL Shelters");
 })
@@ -13,5 +12,4 @@ router.get("/:id", (req, res) =>{
 router.get("/:id/edit", (req, res) =>{
     res.send("Editing a particular Shelter");
 })
-
 module.exports = router;

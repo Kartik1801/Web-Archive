@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const app = express();
 const model = require('./models/user');
 const bcrypt = require('bcrypt')
+const session = require('express-session');
 
 mongoose.connect("mongodb://localhost:27017/BasicAuth")
 .then(() => console.log('MongoDB connected'))
@@ -12,6 +13,9 @@ mongoose.connect("mongodb://localhost:27017/BasicAuth")
 app.set("view engine", "ejs")
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({extended:true}))
+app.use(session({
+    secret: "secret", resave: false, saveUninitialized: false 
+}))
 
 app.get("/", (req, res) => {
     res.send("HOMEPAGE")
@@ -28,6 +32,7 @@ app.post("/register", async (req, res) => {
         password: hash
     })
     await user.save()
+    req.session.user_id = user._id
     res.redirect("/");
 })
 
@@ -38,13 +43,15 @@ app.post("/login", async (req, res) => {
     const {username, password} = req.body
     const user = await model.findOne({ username });
     if(await bcrypt.compare(password, user.password)){
+        req.session.user_id = user._id;
         res.redirect("/access");
     }
-    else res.send("INVALID PASSWORD / USERNAME")
+    else res.redirect("/login")
 })
 
 app.get("/access", (req, res) => {
-    res.send("OK, You are allowed!")
+    if(!req.session.user_id) res.redirect("/login")
+        res.send("OK, You are allowed!")
 })
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'))

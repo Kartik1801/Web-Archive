@@ -33,7 +33,7 @@ app.post("/register", async (req, res) => {
     })
     await user.save()
     req.session.user_id = user._id
-    res.redirect("/");
+    res.redirect("/access");
 })
 
 app.get("/login", (req, res) => {
@@ -49,9 +49,15 @@ app.post("/login", async (req, res) => {
     else res.redirect("/login")
 })
 
+app.post("/logout", (req, res) => {
+    req.session.user_id = null;
+    // or req.session.destroy()
+    res.redirect("/login");
+})
+
 app.get("/access", (req, res) => {
-    if(!req.session.user_id) res.redirect("/login")
-        res.send("OK, You are allowed!")
+    if(!req.session.user_id) return res.redirect("/login")
+        res.render("access")
 })
 
 app.listen(3000, () => console.log('listening on http://localhost:3000'))

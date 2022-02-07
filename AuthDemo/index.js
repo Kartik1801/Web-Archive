@@ -17,6 +17,12 @@ app.use(session({
     secret: "secret", resave: false, saveUninitialized: false 
 }))
 
+const requireLogin = (req, res, next) => {
+    if(!req.session.user_id)
+       return res.redirect("/login");
+    next();    
+}
+
 app.get("/", (req, res) => {
     res.send("HOMEPAGE")
 })
@@ -26,11 +32,7 @@ app.get("/register", (req, res) => {
 })
 app.post("/register", async (req, res) => {
     const {username, password} = req.body
-    const hash = await bcrypt.hash(password, 12);
-    const user = new model({
-        username: username,
-        password: hash
-    })
+    const user = new model({username, password})
     await user.save()
     req.session.user_id = user._id
     res.redirect("/access");
@@ -41,9 +43,9 @@ app.get("/login", (req, res) => {
 })
 app.post("/login", async (req, res) => {
     const {username, password} = req.body
-    const user = await model.findOne({ username });
-    if(await bcrypt.compare(password, user.password)){
-        req.session.user_id = user._id;
+    const foundUser = await model.findAndValidate(username, password)
+    if(foundUser){
+        req.session.user_id = foundUser._id;
         res.redirect("/access");
     }
     else res.redirect("/login")
@@ -55,8 +57,7 @@ app.post("/logout", (req, res) => {
     res.redirect("/login");
 })
 
-app.get("/access", (req, res) => {
-    if(!req.session.user_id) return res.redirect("/login")
+app.get("/access",requireLogin, (req, res) => {
         res.render("access")
 })
 
